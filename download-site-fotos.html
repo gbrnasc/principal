@@ -44,14 +44,17 @@
   <div>
     <button class="btn" id="btn2" onclick="myFunction1()"><i class="fa fa-download"></i> <a class="button" href="fotos/site1.png" download>Download Foto 1</a></button>
   <br /></div>
-  <a class="button" href="fotos/site2.png" download><button class="btn" id="btn3" onclick="myFunction2()"><i class="fa fa-download"></i> Download Foto 2</button></a>
+  <button class="btn" id="btn3" onclick="myFunction2()"><i class="fa fa-download"></i> <a class="button" href="fotos/site2.png" download>Download Foto 2</a></button>
   <br />
   <button class="btn" id="btn4" onclick="myFunction3()"><i class="fa fa-download"></i> <a class="button" href="fotos/site3.png" download>Download Foto 3</a></button>
   <button class="btn" id="btn5" onclick="myFunction4()"><i class="fa fa-download"></i> <a class="button" href="fotos/site4.png" download>Download Foto 4</a></button>
   <!-- java script -->
   <script type="text/javascript">
     function myFunction1() {
-      document.getElementById("btn2").className="btndone"
+    /* Verificando a existência de cookie */
+     checkCookie();
+    /* Mudando a cor do botão */
+     document.getElementById("btn2").className="btndone"
     }
     function myFunction2() {
       document.getElementById("btn3").className="btndone"
