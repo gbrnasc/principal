@@ -2,9 +2,47 @@
   <title>Fotos p Pagina</title>
   <link rel="shortcut icon" href="logo.png">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--- definindo a cookie para salvar o JS já baixados --->
+<script type="text/javascript">
+    /* criando a func de definir a cookie */
+    function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+    /* criando a func de pegar a da cookie */
+    function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+    /* implementando a cookie */
+function checkCookie() {
+  var username = getCookie("username");
+  if (username != "") {
+   alert("Welcome again " + username);
+  } else {
+    username = prompt("Please enter your name:", "");
+    if (username != "" && username != null) {
+      setCookie("username", username, 365);
+    }
+  }
+}
+</script>
 </head>
 
-<body>
+<body onload="checkCookie()">
   <!--- css import --->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style media="screen">
@@ -51,8 +89,6 @@
   <!-- java script -->
   <script type="text/javascript">
     function myFunction1() {
-    /* Verificando a existência de cookie */
-     checkCookie();
     /* Mudando a cor do botão */
      document.getElementById("btn2").className="btndone"
     }
@@ -66,42 +102,4 @@
       document.getElementById("btn5").className="btndone"
     }
   </script>
-<!--- definindo a cookie para salvar o JS já baixados --->
-<script type="text/javascript">
-    /* criando a func de definir a cookie */
-    function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires="+ d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-    /* criando a func de pegar a da cookie */
-    function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-    /* implementando a cookie */
-function checkCookie() {
-  var username = getCookie("username");
-  if (username != "") {
-   alert("Welcome again " + username);
-  } else {
-    username = prompt("Please enter your name:", "");
-    if (username != "" && username != null) {
-      setCookie("username", username, 365);
-    }
-  }
-}
-</script>
 </body>
