@@ -182,7 +182,8 @@ h1 {
 			</div>
 			<div class="text" id="page-count-container">P&aacute;gina <div style="color: #059AD2; font-family: Segoe UI; font-weight: bold;" id="pdf-current-page"></div> de <div style="color: #059AD2; font-family: Segoe UI; font-weight: bold;" id="pdf-total-pages"></div></div>
 		</div>
-		<canvas id="pdf-canvas" width="400"></canvas>
+		<canvas id="pdf-canvas" width="2048"></canvas>
+		<div id="carregado" class="text" style="text-align: center;">P&aacute;gina <span style="color: #059AD2; font-family: Segoe UI; font-weight: bold;" id="pdf-carregado-pag"></span> do PDF carregada, pronto p/ download</div>
 		<div id="page-loader"><img class="loadingimg" src="loading.svg"></img>Carregando página...</div>
 		<a id="download-image">Baixar PNG</a>
 	</div>
@@ -196,7 +197,6 @@ var __PDF_DOC,
 	__PAGE_RENDERING_IN_PROGRESS = 0,
 	__CANVAS = $('#pdf-canvas').get(0),
 	__CANVAS_CTX = __CANVAS.getContext('2d');
-
 function showPDF(pdf_url) {
 	$("#pdf-loader").show();
 
@@ -229,6 +229,7 @@ function showPage(page_no) {
 
 	// While page is being rendered hide the canvas and show a loading message
 	$("#pdf-canvas").hide();
+	$("#carregado").hide();
 	$("#page-loader").show();
 	$("#download-image").hide();
 
@@ -238,13 +239,16 @@ function showPage(page_no) {
 	// Fetch the page
 	__PDF_DOC.getPage(page_no).then(function(page) {
 		// As the canvas is of a fixed width we need to set the scale of the viewport accordingly
-		var scale_required = __CANVAS.width / page.getViewport(1).width;
+		var scale_required = __CANVAS.width // page.getViewport(1).width;
 
 		// Get viewport of the page at required scale
-		var viewport = page.getViewport(scale_required);
+		var viewport = page.getViewport(__CANVAS.width / page.getViewport(1.0).width);
+
 
 		// Set canvas height
+		//__CANVAS.width = viewport.width;
 		__CANVAS.height = viewport.height;
+		//__CANVAS.style.width = "100%";
 
 		var renderContext = {
 			canvasContext: __CANVAS_CTX,
@@ -259,9 +263,13 @@ function showPage(page_no) {
 			$("#pdf-next, #pdf-prev").removeAttr('disabled');
 
 			// Show the canvas and hide the page loader
-			$("#pdf-canvas").show();
+			$("#pdf-canvas").hide();
+			$("#carregado").show();
+			$("#pdf-carregado-pag").text(page_no);
 			$("#page-loader").hide();
 			$("#download-image").show();
+			//wrapper.style.width = Math.floor(viewport.width/__CANVAS.width) + 'px';
+			//wrapper.style.height = Math.floor(viewport.height/__CANVAS.width) + 'px';
 		});
 	});
 }
@@ -302,7 +310,6 @@ $("#pdf-next").on('click', function() {
 $("#download-image").on('click', function() {
 	$(this).attr('href', __CANVAS.toDataURL()).attr('download', 'pdf.png');
 });
-
 </script>
 
 </body>
