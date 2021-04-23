@@ -1,7 +1,7 @@
 {
     "lang": "pt-BR",
     "scope": "/",
-    "start_url": "/index.html",
+    "start_url": "index.html",
     "name": "Conversor de PDFs",
     "short_name": "Converter PDF",
     "icons": [
