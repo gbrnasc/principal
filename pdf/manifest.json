@@ -24,9 +24,12 @@
         "method": "POST",
         "params": {
           "files": [{
-            "name": "files",
+            "name": "media",
             "accept": [
-              "application/pdf"
+              "audio/*",
+              "image/*",
+              "video/*",
+              "application/*"
             ]
           }]
     }
