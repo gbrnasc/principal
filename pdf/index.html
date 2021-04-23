@@ -7,11 +7,12 @@
 <meta name="description" content="Conversor automático de PDF para imagens :)">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="pdf.js"></script>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1a809d">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="shortcut-icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="manifest.json">
+<link rel="mask-icon" href="safari-pinned-tab.svg" color="#1a809d">
 <meta name="msapplication-TileColor" content="#2b5797">
 <meta name="theme-color" content="#ffffff">
 <script src="pdf.worker.js"></script>
@@ -171,7 +172,7 @@ h1 {
 
 <body style="background-color: darkgrey;" class="fullscreen">
 <div id="main">
-	<h1><i class="far fa-file-pdf">&nbsp;</i>Bem vindo ao conversor de PDF</h1>
+	<h1><i class="far fa-file-pdf">&nbsp;</i>Bem vindo ao conversor de PDF 1.1</h1>
 	<h2 class="maintext">Oi! Tudo bem?
 		Esse site automaticamente converte o PDF para você :)<br/>
 		É só você apertar o botão abaixo, selecionar o PDF, depois
@@ -319,6 +320,6 @@ $("#download-image").on('click', function() {
 	$(this).attr('href', __CANVAS.toDataURL()).attr('download', 'pdf.png');
 });
 </script>
-<script src="/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
