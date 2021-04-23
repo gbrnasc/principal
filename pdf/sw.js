@@ -1,12 +1,12 @@
 var cacheName = 'pdf-convert';
 var filesToCache = [
   '/',
-  '/index.html',
-  '/loading.svg',
-  '/manifest.json',
-  '/pdf.js',
-  '/pdf.worker.js',
-  '/main.js'
+  'index.html',
+  'loading.svg',
+  'manifest.json',
+  'pdf.js',
+  'pdf.worker.js',
+  'main.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
